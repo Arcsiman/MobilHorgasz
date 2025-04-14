@@ -30,8 +30,9 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/white"
             android:minHeight="48dp"
-            android:hint="@string/name"
-            android:inputType="text" />
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            />
 
         <EditText
             android:id="@+id/editTextPassword"
