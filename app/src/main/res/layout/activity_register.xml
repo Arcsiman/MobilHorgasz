@@ -19,7 +19,7 @@
             android:textAlignment="center"
             android:textSize="24sp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/white"/>/>
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/userNameEditText"
@@ -81,8 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-        />
-
+            android:background="@color/dark_gray"/>
 
         <CheckBox
             android:id="@+id/newsletterCheckbox"
@@ -90,8 +89,7 @@
             android:layout_height="wrap_content"
             android:text="Feliratkozom a horgász tippek és akciók hírlevélre"
             android:textColor="@color/white"
-            android:buttonTint="@color/white"
-            />
+            android:buttonTint="@color/white"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,14 +102,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/registration"
-                android:onClick="register" />
+                android:onClick="register"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"
                 android:layout_marginStart="16dp"
-                android:onClick="cancle" />
+                android:onClick="cancle"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
