@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "967789223198",
+    "project_id": "horgaszshop-33f31",
+    "storage_bucket": "horgaszshop-33f31.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967789223198:android:7bcd691d41e7e5e4337d0f",
+        "android_client_info": {
+          "package_name": "com.example.mobilhorgasz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMO_GfaeEXDzvXzjogkSj-0ex5v9v0njk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

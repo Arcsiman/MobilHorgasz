@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
     private static final String PREF_KEY = MainActivity.class.getPackage().toString();
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordET;
 
     private SharedPreferences preferences;
+    private FirebaseAuth mAuth;
 
 
 
