@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Horgászapp</string>
+    <string name="app_name">HorgászApp</string>
     <string name="name">Név</string>
     <string name="password">Jelszó</string>
     <string name="login">Bejelentkezés</string>
