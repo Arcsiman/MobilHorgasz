@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
-
+        if(userName.isEmpty() || password.isEmpty()){
+            Toast.makeText(this, "Kérlek töltsd ki mindkét cellát.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);
         mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

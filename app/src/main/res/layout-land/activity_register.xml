@@ -3,7 +3,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/default_margin">
+    android:padding="16dp"
+    android:background="@color/dark_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,8 @@
                 android:text="@string/registration"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:layout_marginBottom="@dimen/default_margin"/>
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/userNameEditText"
@@ -31,7 +33,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/user_name"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
 
             <EditText
                 android:id="@+id/userEmailText"
@@ -39,7 +44,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
 
             <EditText
                 android:id="@+id/passwordEditText"
@@ -47,7 +55,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
 
             <EditText
                 android:id="@+id/passwordAgainEditText"
@@ -55,7 +66,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password_again"
                 android:inputType="textPassword"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
 
             <EditText
                 android:id="@+id/phoneEditText"
@@ -63,7 +77,10 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
                 android:inputType="phone"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/white"/>
 
             <Spinner
                 android:id="@+id/phoneSpinner"
@@ -71,32 +88,13 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/addressEditText"
+            <CheckBox
+                android:id="@+id/newsletterCheckbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/address"
-                android:inputType="textPostalAddress|textMultiLine"
-                android:maxLines="3"
-                android:minHeight="48dp" />
-
-            <RadioGroup
-                android:id="@+id/accountTypeGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/buyerRadioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/buyer" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/seller" />
-            </RadioGroup>
+                android:text="Feliratkozom a horgász tippek és akciók hírlevélre"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"/>
         </LinearLayout>
 
         <LinearLayout

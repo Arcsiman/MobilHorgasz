@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/dark_gray">
 
     <EditText
         android:id="@+id/editTextUserName"
@@ -15,7 +16,9 @@
         android:minHeight="48dp"
         android:ems="10"
         android:hint="@string/name"
-        android:inputType="text"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.307"
@@ -31,11 +34,14 @@
         android:layout_marginBottom="150dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPassword"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName"
         app:layout_constraintVertical_bias="0.148"
         tools:layout_editor_absoluteX="30dp" />
+
 
     <Button
         android:id="@+id/loginButton"
@@ -44,6 +50,7 @@
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
+
         android:onClick="login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:layout_constraintVertical_bias="0.09" />
+
     <Button
         android:id="@+id/registerButton"
         android:layout_width="0dp"
@@ -58,6 +66,7 @@
         android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:text="@string/registration"
+
         android:onClick="register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,4 +74,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.09" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
