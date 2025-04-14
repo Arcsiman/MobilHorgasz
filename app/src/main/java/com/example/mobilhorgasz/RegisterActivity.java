@@ -70,6 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
         String passwordConfirm = passwordConfirmEditText.getText().toString();
 
+        if(userName.isEmpty() || password.isEmpty() || email.isEmpty() || passwordConfirm.isEmpty()){
+            Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (!password.equals(passwordConfirm)) {
             Log.e(LOG_TAG, "Nem ugyanaz a jelszó és a megerősítés.");
             return;

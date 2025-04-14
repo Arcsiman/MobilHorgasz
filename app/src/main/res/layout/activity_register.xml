@@ -76,13 +76,6 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/white"/>
 
-<!--        <Spinner-->
-<!--            android:id="@+id/phoneSpinner"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:minHeight="48dp"-->
-<!--            android:background="@color/dark_gray"/>-->
-
         <CheckBox
             android:id="@+id/newsletterCheckbox"
             android:layout_width="match_parent"

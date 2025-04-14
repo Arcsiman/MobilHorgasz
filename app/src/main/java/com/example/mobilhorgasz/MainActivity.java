@@ -36,13 +36,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.editTextUserName), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+
 
         userNameET = findViewById(R.id.editTextUserName);
         passwordET = findViewById(R.id.editTextPassword);
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
         if(userName.isEmpty() || password.isEmpty()){
-            Toast.makeText(this, "Kérlek töltsd ki mindkét cellát.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
             return;
         }
         //Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);

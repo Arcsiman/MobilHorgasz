@@ -34,12 +34,12 @@ public class ShopListActivity extends AppCompatActivity {
             finish();
         }
 
-        // Üdvözlő szöveg animálása
+
         TextView welcomeTextView = findViewById(R.id.welcomeTextView);
         Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_text);
         welcomeTextView.startAnimation(fadeInAnimation);
 
-        // Kijelentkezés gomb
+
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(view -> {
             mAuth.signOut();
