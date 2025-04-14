@@ -6,11 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegisterActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private static final String PREF_KEY = RegisterActivity.class.getPackage().toString();
@@ -32,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     EditText passwordEditText;
     EditText passwordConfirmEditText;
     EditText phoneEditText;
-    Spinner spinner;
     CheckBox newsletterCheckbox;
 
     private SharedPreferences preferences;
@@ -54,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         passwordEditText = findViewById(R.id.passwordEditText);
         passwordConfirmEditText = findViewById(R.id.passwordAgainEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
-        spinner = findViewById(R.id.phoneSpinner);
         newsletterCheckbox = findViewById(R.id.newsletterCheckbox);
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
@@ -63,12 +58,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         userNameEditText.setText(userName);
         passwordEditText.setText(password);
-
-        spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.phone_modes, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -87,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         }
 
         String phoneNumber = phoneEditText.getText().toString();
-        String phoneType = spinner.getSelectedItem().toString();
         boolean wantsNewsletter = newsletterCheckbox.isChecked();
 
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", e-mail: " + email + ", Hírlevél: " + wantsNewsletter);
@@ -115,16 +103,5 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private void startShopping() {
         Intent intent = new Intent(this, ShopListActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String selectedItem = parent.getItemAtPosition(position).toString();
-        Log.i(LOG_TAG, selectedItem);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Nothing here for now
     }
 }

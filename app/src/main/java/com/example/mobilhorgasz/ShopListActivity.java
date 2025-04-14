@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +34,12 @@ public class ShopListActivity extends AppCompatActivity {
             finish();
         }
 
+        // Üdvözlő szöveg animálása
+        TextView welcomeTextView = findViewById(R.id.welcomeTextView);
+        Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_text);
+        welcomeTextView.startAnimation(fadeInAnimation);
+
+        // Kijelentkezés gomb
         Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(view -> {
             mAuth.signOut();
