@@ -13,10 +13,43 @@
     <string name="buyer">Vásárló</string>
     <string name="seller">Eladó</string>
     <string name="logout">Kijelentkezés</string>
+
+
     <string-array name="phone_modes">
         <item>Otthoni</item>
         <item>Munkahelyi</item>
         <item>Mobil</item>
         <item>Egyéb</item>
     </string-array>
+    <string name="title_placholder">Név</string>
+    <string name="item_placeholder">Leirás</string>
+    <string name="item_info_placeholder">Infó a termékről</string>
+
+    <string-array name="shopping_item_names">
+        <item>Orsó</item>
+        <item>Horgászbot</item>
+    </string-array>
+
+    <string-array name="shopping_item_desc">
+        <item>Ez egy orsó</item>
+        <item>Ez egy horgászbot</item>
+    </string-array>
+    <string-array name="shopping_item_rates">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="shopping_item_images">
+        <item>@drawable/orso</item>
+        <item>@drawable/horgaszbot</item>
+    </string-array>
+
+    <string-array name="shopping_item_price">
+        <item>10000 din</item>
+        <item>20000 Huf</item>
+    </string-array>
+    <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">#FFBB33</item> <!-- narancssárga -->
+    </style>
+
+
 </resources>
