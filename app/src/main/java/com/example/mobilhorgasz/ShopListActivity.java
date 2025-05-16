@@ -1,9 +1,12 @@
 package com.example.mobilhorgasz;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +53,7 @@ public class ShopListActivity extends AppCompatActivity {
     private CollectionReference mItems;
 
     private NotificationHandler mNotificationHandler;
-
+    private AlarmManager mAlarmManager;
     private int gridNumber = 1;
     private boolean viewRow = true;
 
@@ -101,6 +104,8 @@ public class ShopListActivity extends AppCompatActivity {
 
 
         mNotificationHandler = new NotificationHandler(this);
+        mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        //setAlarmManager();
 
     }
 
@@ -253,6 +258,20 @@ public class ShopListActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
 
     }
-
+//    private void setAlarmManager(){
+////        long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+//        long repeatInterval = 1000 * 60; // 1 minutes
+//        long triggerTime = SystemClock.elapsedRealtime() + repeatInterval;
+//        Intent intent = new Intent(this, AlarmReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        mAlarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                triggerTime,
+//                repeatInterval,
+//                pendingIntent);
+//
+//        //mAlarmManager.cancel(pendingIntent);
+//
+//    }
 
 }
