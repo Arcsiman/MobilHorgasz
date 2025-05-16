@@ -1,6 +1,7 @@
 package com.example.mobilhorgasz;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,8 @@ public class ShopListActivity extends AppCompatActivity {
 
     private FirebaseFirestore mFirestore;
     private CollectionReference mItems;
+
+    private NotificationHandler mNotificationHandler;
 
     private int gridNumber = 1;
     private boolean viewRow = true;
@@ -95,6 +98,9 @@ public class ShopListActivity extends AppCompatActivity {
         mFirestore= FirebaseFirestore.getInstance();
         mItems = mFirestore.collection("Items");
         queryData();
+
+
+        mNotificationHandler = new NotificationHandler(this);
 
     }
 
@@ -155,6 +161,7 @@ public class ShopListActivity extends AppCompatActivity {
             Toast.makeText(this, "Item"+ item._getId()+ "cannot be deleted.", Toast.LENGTH_LONG).show();
         });
         queryData();
+        mNotificationHandler.cancel();
     }
     public void addToCart(ShoppingItem item) {
         //update
@@ -165,6 +172,8 @@ public class ShopListActivity extends AppCompatActivity {
                 .addOnFailureListener(failure -> {
                     Toast.makeText(this, "Item"+ item._getId()+ "cannot be added to cart.", Toast.LENGTH_LONG).show();
                 });
+
+        mNotificationHandler.send(item.getName());
         queryData();
     }
 
