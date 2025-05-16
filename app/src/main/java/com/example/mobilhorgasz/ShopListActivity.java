@@ -18,11 +18,18 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import android.view.Menu;
+import android.widget.Toast;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
 
@@ -38,8 +45,8 @@ public class ShopListActivity extends AppCompatActivity {
     private ArrayList<ShoppingItem> mItemList;
     private ShoppingItemAdapter mAdapter;
 
-    private FrameLayout redCircle;
-    private TextView contentTextView;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mItems;
 
     private int gridNumber = 1;
     private boolean viewRow = true;
@@ -85,9 +92,12 @@ public class ShopListActivity extends AppCompatActivity {
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
 
+        mFirestore= FirebaseFirestore.getInstance();
+        mItems = mFirestore.collection("Items");
+        queryData();
 
-        intializeData();
     }
+
     private void intializeData() {
         String[] itemsList = getResources().getStringArray(R.array.shopping_item_names);
         String[] itemsInfo = getResources().getStringArray(R.array.shopping_item_desc);
@@ -95,13 +105,74 @@ public class ShopListActivity extends AppCompatActivity {
         TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.shopping_item_images);
         TypedArray itemsRate = getResources().obtainTypedArray(R.array.shopping_item_rates);
 
-        mItemList.clear();
-        for(int i=0; i<itemsList.length; i++){
-            mItemList.add(new ShoppingItem(itemsList[i], itemsInfo[i], itemsPrice[i], itemsRate.getFloat(i, 0), itemsImageResource.getResourceId(i, 0)));
+
+        //mItemList.clear();
+        for (int i = 0; i < itemsList.length; i++) {
+            String name = itemsList[i];
+            String info = itemsInfo[i];
+            String price = itemsPrice[i];
+            float rate = itemsRate.getFloat(i, 0);
+            int imageResource = itemsImageResource.getResourceId(i, 0);
+            int cartedCount = 0; // TODO: implement carted count
+
+//          FIXME: eredetileg nem 0-t ad vissza, hanem -1-et
+
+            mItems.add(new ShoppingItem(name, info, price, rate, imageResource, cartedCount));
+//          Itt eddig mItemList list volt
         }
         itemsImageResource.recycle();
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
     }
+    private void queryData(){
+        mItemList.clear();
+
+//        mItems.whereEqualTo()...
+        mItems.orderBy("cartedCount", Query.Direction.DESCENDING).limit(10).get().addOnSuccessListener(queryDocumentSnapshots ->  {
+            for(QueryDocumentSnapshot document: queryDocumentSnapshots){
+                ShoppingItem item = document.toObject(ShoppingItem.class);
+                item.setId(document.getId());
+                mItemList.add(item);
+                //intializeData();
+            }
+            if(mItemList.size()==0){
+                intializeData();
+                queryData();
+            }
+            mAdapter.notifyDataSetChanged();
+        });
+
+
+
+    }
+    public void deleteItem(ShoppingItem item) {
+        //delete
+        DocumentReference ref = mItems.document(item._getId());
+
+        ref.delete().addOnSuccessListener(success -> {
+            Log.d(LOG_TAG, "Item is successfuly deleted"+ item._getId());
+        })
+        .addOnFailureListener(failure -> {
+            Toast.makeText(this, "Item"+ item._getId()+ "cannot be deleted.", Toast.LENGTH_LONG).show();
+        });
+        queryData();
+    }
+    public void addToCart(ShoppingItem item) {
+        //update
+        mItems.document(item._getId()).update("cartedCount", item.getCartedCount() + 1)
+//                .addOnSuccessListener(success -> {
+//                    Log.d(LOG_TAG, "Item is successfuly added to cart"+ item._getId());
+//                })
+                .addOnFailureListener(failure -> {
+                    Toast.makeText(this, "Item"+ item._getId()+ "cannot be added to cart.", Toast.LENGTH_LONG).show();
+                });
+        queryData();
+    }
+
+//    private void updateItem(ShoppingItem item) {
+//
+//    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -173,5 +244,6 @@ public class ShopListActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
 
     }
+
 
 }

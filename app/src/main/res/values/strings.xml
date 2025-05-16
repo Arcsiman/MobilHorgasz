@@ -39,8 +39,8 @@
         <item>5</item>
     </string-array>
     <string-array name="shopping_item_images">
-        <item>@drawable/orso</item>
         <item>@drawable/horgaszbot</item>
+        <item>@drawable/orso</item>
     </string-array>
 
     <string-array name="shopping_item_price">
