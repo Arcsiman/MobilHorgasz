@@ -108,6 +108,10 @@ public class ShopListActivity extends AppCompatActivity {
         //setAlarmManager();
 
     }
+    private void cart() {
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }
 
     private void intializeData() {
         String[] itemsList = getResources().getStringArray(R.array.shopping_item_names);
@@ -178,7 +182,7 @@ public class ShopListActivity extends AppCompatActivity {
                     Toast.makeText(this, "Item"+ item._getId()+ "cannot be added to cart.", Toast.LENGTH_LONG).show();
                 });
 
-        mNotificationHandler.send(item.getName());
+        //mNotificationHandler.send(item.getName());
         queryData();
     }
 
@@ -219,6 +223,8 @@ public class ShopListActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Cart button clicked");
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.view_selector) {
             Log.d(LOG_TAG, "View selector button clicked");
