@@ -19,14 +19,15 @@
             android:enabled="true"
             android:exported="false"></receiver>
 
-        <activity android:name=".CartActivity" />
-        <activity android:name=".OffersActivity" />
+
         <activity
             android:name=".ShopListActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".OffersActivity" />
 
         <activity
             android:name=".MainActivity"
