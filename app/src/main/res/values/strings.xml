@@ -28,24 +28,49 @@
     <string-array name="shopping_item_names">
         <item>Orsó</item>
         <item>Horgászbot</item>
+        <item>Csali</item>
+        <item>Hajó</item>
+        <item>Kapásjelző</item>
+        <item>Mágnes</item>
+        <item>Szék</item>
     </string-array>
 
     <string-array name="shopping_item_desc">
         <item>Ez egy orsó</item>
         <item>Ez egy horgászbot</item>
+        <item>Ez egy csali</item>
+        <item>Ez egy hajó</item>
+        <item>Ez egy kapásjelző</item>
+        <item>Ez egy mágnes</item>
+        <item>Ez egy szék</item>
     </string-array>
     <string-array name="shopping_item_rates">
+        <item>4</item>
+        <item>5</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
         <item>4</item>
         <item>5</item>
     </string-array>
     <string-array name="shopping_item_images">
         <item>@drawable/orso</item>
         <item>@drawable/horgaszbot</item>
+        <item>@drawable/csali</item>
+        <item>@drawable/hajo</item>
+        <item>@drawable/kapasjelzo</item>
+        <item>@drawable/magnes</item>
+        <item>@drawable/szek</item>
     </string-array>
 
     <string-array name="shopping_item_price">
         <item>10000 din</item>
         <item>20000 Huf</item>
+        <item>5000 Huf</item>
+        <item>100000 Huf</item>
+        <item>2000 Huf</item>
+        <item>1000 Huf</item>
+        <item>5000 Huf</item>
     </string-array>
     <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu">
         <item name="android:textColor">#FFBB33</item> <!-- narancssárga -->

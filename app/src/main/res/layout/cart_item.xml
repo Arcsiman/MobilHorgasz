@@ -1,59 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp">
+    android:fillViewport="true"
+    android:background="@color/dark_gray"
+    tools:context=".ShopListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <TextView-->
+<!--        android:id="@+id/cartTitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Kosár tartalma"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="32dp"/>-->
 
-        <ImageView
-            android:id="@+id/itemImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"/>
+<!--    &lt;!&ndash; Kosár tartalom (pl. LinearLayout vagy kis RecyclerView fix magassággal) &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:scrollbars="vertical"-->
+<!--        android:contentDescription="A kosár tartalma, termékek listája"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cartTitle"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
+        <!-- Ajánlatok Cím -->
         <TextView
-            android:id="@+id/productName"
-            style="@style/ItemDetailText"
+            android:id="@+id/offersTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/itemImage"
-            android:padding="8dp"
-            android:text="@string/item_placeholder"
-            android:textColor="?android:textColorSecondary"/>
+            android:text="Kihagyhatatlan ajánlatok"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
+        <!-- Ajánlatok tartalom -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/offersRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            android:contentDescription="Ajánlott termékek listája"
+            app:layout_constraintTop_toBottomOf="@id/offersTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/productName"
-            android:numStars="5"
-            android:layout_marginStart="8dp"
-            android:isIndicator="true" />
 
-        <TextView
-            android:id="@+id/productInfo"
-            style="@style/ItemDetailText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ratingBar"
-            android:padding="8dp"
-            android:text="@string/item_info_placeholder" />
-
-        <TextView
-            android:id="@+id/price"
-            style="@style/ItemDetailText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/productInfo"
-            android:layout_marginBottom="12dp"
-            android:padding="8dp"
-            android:textColor="@color/orange"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
         />
     <item
         android:id="@+id/setting_button"
-        android:title="Beállitások"
+        android:title="Ajánlások"
         app:showAsAction="never"
         app:actionViewClass="android.widget.SearchView"
         android:orderInCategory="2"

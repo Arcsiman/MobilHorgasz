@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 import androidx.appcompat.widget.Toolbar;
 
-public class CartActivity extends AppCompatActivity {
+public class OffersActivity extends AppCompatActivity {
     private static final String LOG_TAG = CartActivity.class.getName();
     private FirebaseUser user;
     private FirebaseAuth mAuth;
@@ -42,7 +42,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.activity_offers);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,76 +61,56 @@ public class CartActivity extends AppCompatActivity {
         mItems = mFirestore.collection("Items");
 
 
-        TextView welcomeTextView = findViewById(R.id.cartTitle);
+        TextView welcomeTextView = findViewById(R.id.offersTitle);
         Animation fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in_text);
         welcomeTextView.startAnimation(fadeInAnimation);
 
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
-        mItemList = new ArrayList<>();
-        mAdapter = new CartAdapter(this, mItemList);
-        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView = findViewById(R.id.recyclerView);
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
+//        mItemList = new ArrayList<>();
+//        mAdapter = new CartAdapter(this, mItemList);
+//        mRecyclerView.setAdapter(mAdapter);
 
 
 
 
-//        mOffersRecyclerView = findViewById(R.id.offersRecyclerView);
-//        mOffersRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
-//        mOffersList = new ArrayList<>();
-//        mOffersAdapter = new CartAdapter(this, mOffersList);
-//        mOffersRecyclerView.setAdapter(mOffersAdapter);
+        mOffersRecyclerView = findViewById(R.id.offersRecyclerView);
+        mOffersRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
+        mOffersList = new ArrayList<>();
+        mOffersAdapter = new CartAdapter(this, mOffersList);
+        mOffersRecyclerView.setAdapter(mOffersAdapter);
 
 
 
-        queryData2();
-        //queryOffers();
+
+        queryOffers();
 
     }
 
 
 
 
-//    private void queryOffers() {
-//        mOffersList.clear();
-//
-//        mItems
-//                .whereEqualTo("ratedInfo", 5)
-//                .whereEqualTo("cartedCount", 0)
-//                .limit(10)
-//                .get()
-//                .addOnSuccessListener(queryDocumentSnapshots -> {
-//                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                        Product item = document.toObject(Product.class);
-//                        item.setId(document.getId());
-//                        mOffersList.add(item);
-//                    }
-//                    mOffersAdapter.notifyDataSetChanged();
-//                })
-//                .addOnFailureListener(e -> {
-//                    Log.e(LOG_TAG, "Hiba történt az ajánlatok lekérdezésekor: ", e);
-//                });
-//    }
+    private void queryOffers() {
+        mOffersList.clear();
 
-    private void queryData2() {
-        mItemList.clear();
-
-        mItems.whereGreaterThanOrEqualTo("cartedCount", 1)
-                .orderBy("cartedCount", Query.Direction.DESCENDING)
+        mItems
+                .whereEqualTo("ratedInfo", 5)
+                .whereEqualTo("cartedCount", 0)
                 .limit(10)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Product item = document.toObject(Product.class);
                         item.setId(document.getId());
-                        mItemList.add(item);
+                        mOffersList.add(item);
                     }
-                    mAdapter.notifyDataSetChanged();
+                    mOffersAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(LOG_TAG, "Hiba történt az ajánlatok lekérdezésekor: ", e);
                 });
     }
 
+
 }
-
-
-
-

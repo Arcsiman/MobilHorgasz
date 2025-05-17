@@ -20,54 +20,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <TextView
-        android:id="@+id/cartTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kosár tartalma"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
-
-    <!-- Kosár tartalom (pl. LinearLayout vagy kis RecyclerView fix magassággal) -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scrollbars="vertical"
-        android:contentDescription="A kosár tartalma, termékek listája"
-        app:layout_constraintTop_toBottomOf="@id/cartTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-<!--    &lt;!&ndash; Ajánlatok Cím &ndash;&gt;-->
 <!--    <TextView-->
-<!--        android:id="@+id/offersTitle"-->
+<!--        android:id="@+id/cartTitle"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:text="Kihagyhatatlan ajánlatok"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/recyclerView"-->
+<!--        android:text="Kosár tartalma"-->
 <!--        android:textSize="20sp"-->
 <!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        android:layout_marginTop="32dp" />-->
+<!--        android:layout_marginTop="32dp"/>-->
 
-<!--    &lt;!&ndash; Ajánlatok tartalom &ndash;&gt;-->
+<!--    &lt;!&ndash; Kosár tartalom (pl. LinearLayout vagy kis RecyclerView fix magassággal) &ndash;&gt;-->
 <!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/offersRecyclerView"-->
+<!--        android:id="@+id/recyclerView"-->
 <!--        android:layout_width="0dp"-->
 <!--        android:layout_height="0dp"-->
 <!--        android:scrollbars="vertical"-->
-<!--        android:contentDescription="Ajánlott termékek listája"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/offersTitle"-->
+<!--        android:contentDescription="A kosár tartalma, termékek listája"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/cartTitle"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <!-- Ajánlatok Cím -->
+    <TextView
+        android:id="@+id/offersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kihagyhatatlan ajánlatok"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Ajánlatok tartalom -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/offersRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:contentDescription="Ajánlott termékek listája"
+        app:layout_constraintTop_toBottomOf="@id/offersTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,6 +52,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return mProductsData.size();
     }
 
+
 //    @Override
 //    public Filter getFilter() {
 //        return shoppingFilter;

@@ -220,6 +220,8 @@ public class ShopListActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.setting_button) {
             Log.d(LOG_TAG, "Settings button clicked");
+            Intent intent = new Intent(this, OffersActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Cart button clicked");
