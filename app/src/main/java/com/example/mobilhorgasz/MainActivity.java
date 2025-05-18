@@ -1,9 +1,12 @@
 package com.example.mobilhorgasz;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -16,14 +19,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int SECRET_KEY = 99;
 
     private static final int REQUEST_CALL_PERMISSION = 1;
+    private static final int REQUEST_CONTACTS_PERMISSION = 2; // ÚJ
     private String shopPhoneNumber = "061301234567";
 
     EditText userNameET;
@@ -39,14 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private FirebaseAuth mAuth;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
 
         userNameET = findViewById(R.id.editTextUserName);
         passwordET = findViewById(R.id.editTextPassword);
@@ -60,24 +59,24 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
-        if(userName.isEmpty() || password.isEmpty()){
+        if (userName.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
             return;
         }
-        //Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);
         mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.d(LOG_TAG,"User login successfully");
+                if (task.isSuccessful()) {
+                    Log.d(LOG_TAG, "User login successfully");
                     startShopping();
-                }else{
-                    Log.d(LOG_TAG,"User login fail");
-                    Toast.makeText(MainActivity.this, "User login fail: "+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d(LOG_TAG, "User login fail");
+                    Toast.makeText(MainActivity.this, "User login fail: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
+
     private void startShopping() {
         Intent intent = new Intent(this, ShopListActivity.class);
         startActivity(intent);
@@ -85,15 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra("SECRET_KEY",SECRET_KEY);
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
     }
 
     public MainActivity() {
         super();
     }
-
-
 
     public void callShop(View view) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -109,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -120,13 +118,49 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "A híváshoz engedély szükséges!", Toast.LENGTH_SHORT).show();
             }
+        } else if (requestCode == REQUEST_CONTACTS_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                loadContacts(null);
+            } else {
+                Toast.makeText(this, "A kontaktok eléréséhez engedély szükséges!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
 
+    public void loadContacts(View view) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    REQUEST_CONTACTS_PERMISSION);
+        } else {
+            ArrayList<String> contacts = new ArrayList<>();
+            Cursor cursor = getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null, null, null, null);
 
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    @SuppressLint("Range") String name = cursor.getString(
+                            cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                    @SuppressLint("Range") String number = cursor.getString(
+                            cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    contacts.add(name + ": " + number);
+                }
+                cursor.close();
+            }
 
+            // Egyszerű kiíratás logba
+            for (String c : contacts) {
+                Log.i(LOG_TAG, "Kontakt: " + c);
+            }
 
+            Toast.makeText(this, "Kontaktok beolvasva, nézd a Logcatet!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Életciklus metódusok
     @Override
     protected void onStart() {
         super.onStart();
@@ -150,9 +184,8 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("userName", userNameET.getText().toString());
-        editor.putString("password",passwordET.getText().toString());
+        editor.putString("password", passwordET.getText().toString());
         editor.apply();
-
         Log.i(LOG_TAG, "onPause");
     }
 

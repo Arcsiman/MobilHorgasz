@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +8,7 @@
     tools:context=".MainActivity"
     android:background="@color/dark_gray">
 
-
+    <!-- Beviteli mezők oszlopa -->
     <LinearLayout
         android:id="@+id/inputLayout"
         android:layout_width="0dp"
@@ -31,8 +30,7 @@
             android:backgroundTint="@color/white"
             android:minHeight="48dp"
             android:hint="@string/email_address"
-            android:inputType="textEmailAddress"
-            />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -47,7 +45,7 @@
             android:layout_marginTop="16dp" />
     </LinearLayout>
 
-    <!-- Gombok -->
+    <!-- Gombok oszlopa -->
     <LinearLayout
         android:id="@+id/buttonLayout"
         android:layout_width="0dp"
@@ -74,8 +72,22 @@
             android:text="@string/registration"
             android:onClick="register"
             android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/callShopButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hívás a horgászboltba"
+            android:onClick="callShop"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/button_load_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kontaktok betöltése"
+            android:onClick="loadContacts"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
